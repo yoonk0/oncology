@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<!--
+	Typify by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+	<head>
+		<title>Decision Support Tool</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="../static/assets/css/main.css" />
+		<link rel="shortcut icon" href="../static/images/favicon.ico">	
+		<script src="../static/assets/js/jquery.min.js"></script>
+		<script type="text/javascript">
+		$(document).ready(function(){
+		    $(function(){
+		      $("#graph").load("../static/patientGraph.html"); 
+		    });
+	    });
+	    </script> 
+	</head>
+	<body>
+		<!-- Header -->
+			<header id = "header">
+				<a href="http://www.med.upenn.edu/" target="_blank"><img src="../static/images/psom_logo_white.png" alt="Perelman School of Medicine at the University of Pennsylvania" width="213" height="60" /></a>
+				<span id = "headerLinks">
+					<a href = "/">Home</a>
+					<a href = "mailto:#">Contact</a>
+				</span>
+			</header>
+		<!-- Banner -->
+			<section id="banner" class = "result">
+				<p>Your information</p>
+				<div id="resultBox">
+				Age : {{ result.age }} <br>
+				Clinical T Stage : {{result.ctStage}} <br>
+				Comorbidity Score : {{result.comoScore}} <br>
+				</div>
+				<br>
+				<a href="form" class="button special">Back</a>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper special">
+				<header class="major">
+					<h2>Your Results</h2>
+					<p class = "resultText"> 
+					<h1>
+					{% if calc.median <= calc.breakeven %}
+					We recommend chemo-RT
+					{% endif %}
+					{% if (calc.median >= calc.breakeven) and ((calc.median - calc.breakeven) <= 1) %}
+					We recommend shared decision-making
+					{% endif %}
+					{% if (calc.median >= calc.breakeven) and ((calc.median - calc.breakeven) > 1) %}
+					We recommend surgery
+					{% endif %}
+					</h1>. <br>
+					Break Even : 
+					{% if calc.breakeven >= 1 %}
+					{{ (calc.breakeven//1)|round|int }} years 
+					{% endif %}
+					{{ ((calc.breakeven - (calc.breakeven//1))*12)|round|int }} months<br>
+					Median Survival : 
+					{% if calc.median >= 1 %}
+					{{ (calc.median//1)|round|int }} years
+					{% endif %}
+					{{ ((calc.median - (calc.median//1))*12)|round|int }} months<br>
+					</p>
+				</header>
+				<div class= "inner">
+					<div id = "graph"></div>
+				</div>
+				<br><br>
+				<div class= "inner">
+					<h1> Interpreting the Graph:</h1>
+					<p>
+					Median survival: median survival based on age, clinical T stage, and comorbidity score. <br>
+					Break-even: point when there is equivalence between surgery vs. chemo plus radiation. <br>
+					If break-even is shown at the right edge of the graph, chemo is always recommended for the shown time range.<br><br>
+					The graph represents the sum of the differences between the survival rate for chemo-RT and surgery over time. <br>
+					For patients where the median survival is on or before the break-even point, we suggest chemo-RT. For patients where the median survial occurs after the break-even point, but the different is less than 1 year, we recommend shared decision-making. For patients with a median survival that is more than 1 year after the break even point, we recommend surgery. </p>
+				</div>
+			</section>
+		
+
+		<!-- Footer -->
+			<footer id="footer">
+				<div class="copyright">
+					&copy; Untitled. Design: <a href="http://templated.co/">TEMPLATED</a>.
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="../static/assets/js/skel.min.js"></script>
+			<script src="../static/assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="../static/assets/js/main.js"></script>
+
+	</body>
