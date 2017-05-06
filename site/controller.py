@@ -1,5 +1,5 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
-from site import app
+from flask_app import app
 from site import plot
 
 """

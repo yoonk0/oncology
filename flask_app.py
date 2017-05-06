@@ -1,2 +1,3 @@
 from flask import Flask
-from site import app
+
+app = Flask(__name__)
