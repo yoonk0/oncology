@@ -1,5 +1,9 @@
-from site import controller
-from site import fileReader
+from flask import Flask
+
+app = Flask(__name__)
+
+from application import controller
+from application import fileReader
 
 app.static_folder = 'static'
 

@@ -350,6 +350,6 @@ class Plot:
 
 		fig = dict(data=data, layout=layout3)
 
-		plot(fig, filename='app/static/patientGraph.html', auto_open=False)
+		plot(fig, filename='application/static/patientGraph.html', auto_open=False)
 
 		return {'breakeven':breakeven, 'median': median1}

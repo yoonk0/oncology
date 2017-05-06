@@ -1,6 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
-from flask_app import app
-from site import plot
+from application import app
+from application import plot
 
 """
 	This is the controller for the program

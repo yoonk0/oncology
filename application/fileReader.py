@@ -6,7 +6,7 @@ class FileReader:
 	This class is for reading a R file
 	"""
 	def __init__(self):
-		self.filename = 'app/data/model.rdata'
+		self.filename = 'application/data/model.rdata'
 		self.survRate = None
 		self.days = None
 
