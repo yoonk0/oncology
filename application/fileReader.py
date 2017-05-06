@@ -1,4 +1,5 @@
-import rpy2.robjects as robjects
+import rpy2
+from rpy2 import robjects as robjects
 import numpy as np
 
 class FileReader:
