@@ -1,4 +1,6 @@
 from flask import Flask, flash, redirect, render_template, request, session, abort
+
+from app import app
 from app import plot
 
 """
